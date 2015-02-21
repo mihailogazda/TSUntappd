@@ -231,3 +231,4 @@ $RECYCLE.BIN/
 *.lnk
 TSUntapped/web.Debug.config
 TSUntapped/web.Release.config
+TSUntapped/build.js
