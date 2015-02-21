@@ -1,0 +1,33 @@
+﻿
+html, body {
+    height: 100%;    
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.page-contents {
+    padding: 25px;
+    height: 100%;
+    /*background-color: white;*/
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-vertical-center {
+    vertical-align: middle;
+}
+
+.small-padding {
+    padding: 10px;
+}

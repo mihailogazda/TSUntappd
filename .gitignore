@@ -229,3 +229,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+TSUntapped/web.Debug.config
+TSUntapped/web.Release.config
