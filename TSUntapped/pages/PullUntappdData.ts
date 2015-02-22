@@ -1,16 +1,24 @@
 ﻿/// <reference path="../Page.ts" />
 /// <reference path="../UntappdRequest.ts" />
 /// <reference path="ErrorPage.ts" />
+/// <reference path="../UntappdRecord.ts" />
+/// <reference path="ShowUntappdData.ts" />
 
+/*
+ *  Page that pulls untappd data 
+ */
 class PullUntappdData extends Page {
 
     UserName: string;
 
     XmlRequest: XMLHttpRequest;
     Loader: HTMLElement;
-    ImageContent: HTMLElement;
+    ProgressParagraph: HTMLElement;
+
     UntappdRequest: UntappdRequest;
     JSONObject: JSON;
+
+    UntappdRecords: Array<UntappdRecord>;
 
     constructor(Username: string) {
         super("PullUntappdData");
@@ -18,19 +26,19 @@ class PullUntappdData extends Page {
         this.Private = true;
         this.UserName = Username;
         this.UntappdRequest = new UntappdRequest(this.UserName);
+        this.UntappdRecords = new Array<UntappdRecord>();
     }
 
     public OnShow() {
 
-        this.Container().appendChild(ElementFactory.CreateHeading2("Untappd Images Viewer"));
+        this.Container().appendChild(ElementFactory.CreateHeading2("Loading data for user : " + this.UserName));
 
         var loader = ElementFactory.CreateDiv();
         loader.appendChild(ElementFactory.CreateImage("images/loading.gif"));
         loader.appendChild(ElementFactory.CreateBR());
-        loader.appendChild(ElementFactory.CreateParagraph("Loading data for user : " + this.UserName));
-        this.Loader = <HTMLElement> this.Container().appendChild(loader);
+        this.ProgressParagraph = <HTMLElement> loader.appendChild(ElementFactory.CreateParagraph("Downloading data..."));
 
-        this.ImageContent = <HTMLElement> this.Container().appendChild(ElementFactory.CreateDiv());
+        this.Loader = <HTMLElement> this.Container().appendChild(loader);
 
         //  Initial request
         var fullUrl = this.UntappdRequest.GetPhotosRequest();
@@ -39,7 +47,7 @@ class PullUntappdData extends Page {
 
     }
 
-    public MakeNewRequest(Url: string) {
+    private MakeNewRequest(Url: string) {
         this.XmlRequest = new XMLHttpRequest();
         this.XmlRequest.open("get", Url, true);
         var self = this;
@@ -51,7 +59,7 @@ class PullUntappdData extends Page {
         this.XmlRequest.send();
     }
 
-    public ResolveJSON(LastRequest: string) {
+    private ResolveJSON(LastRequest: string) {
 
         var meta = this.JSONObject["meta"];
         var errorCode = meta["code"];
@@ -70,14 +78,20 @@ class PullUntappdData extends Page {
 
                         for (var i = 0; i < count; i++) {
                             var item = items[i];
+
                             var photoID = item["photo_id"];
+                            var photoCreated = item["created_at"];
+
                             var photo = item["photo"];
                             var photoURL = photo["photo_img_md"];
+                            var photoURLLarge = photo["photo_img_lg"];
+
+                            var record = new UntappdRecord(photoID, photoCreated, photoURL, photoURLLarge);
+                            this.UntappdRecords.push(record);
 
                             //Logger.Log(photoURL);
 
-                            this.ImageContent.appendChild(ElementFactory.CreateImage(photoURL, StyleController.ImageRoundedClassName));
-
+                            this.LoadSingleImage(record);
                         }
                     }
                 }
@@ -108,8 +122,17 @@ class PullUntappdData extends Page {
         }
     }
 
-    public AllDone() {
+    private AllDone() {
         this.Loader.hidden = true;
+        var showDataPage = new ShowUntappdData(this.UntappdRecords);
+        this.Controller.AddPage(showDataPage);
+        this.Controller.ShowPageWithInstance(showDataPage);
+    }
+
+    private LoadSingleImage(Record: UntappdRecord) {
+        var counter = this.UntappdRecords.length;
+        this.ProgressParagraph.innerHTML = "Downloaded: " + counter + " images...";
+        Logger.Log("Pulling image : " + counter);
     }
 
 }  
