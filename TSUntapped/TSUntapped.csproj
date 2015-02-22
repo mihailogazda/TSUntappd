@@ -55,7 +55,8 @@
     <None Include="Bihoskop.pubxml" />
     <None Include="Directory.pubxml" />
     <Content Include="packages.config" />
-    <Content Include="post.php" />
+    <Content Include="php\post.php" />
+    <Content Include="php\upload.php" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
