@@ -32,13 +32,8 @@ class PullUntappdData extends Page {
     public OnShow() {
 
         this.Container().appendChild(ElementFactory.CreateHeading2("Loading data for user : " + this.UserName));
-
-        var loader = ElementFactory.CreateDiv();
-        loader.appendChild(ElementFactory.CreateImage("images/loading.gif"));
-        loader.appendChild(ElementFactory.CreateBR());
-        this.ProgressParagraph = <HTMLElement> loader.appendChild(ElementFactory.CreateParagraph("Downloading data..."));
-
-        this.Loader = <HTMLElement> this.Container().appendChild(loader);
+        this.Loader = <HTMLElement> this.Container().appendChild(ElementFactory.CreateLoader("Downloading data..."));
+        this.ProgressParagraph = <HTMLElement> this.Loader.appendChild(ElementFactory.CreateParagraph(""));
 
         //  Initial request
         var fullUrl = this.UntappdRequest.GetPhotosRequest();

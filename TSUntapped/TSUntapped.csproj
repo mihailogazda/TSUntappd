@@ -30,6 +30,7 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="Application.ts" />
     <TypeScriptCompile Include="ElementFactory.ts" />
+    <TypeScriptCompile Include="InstagramRequest.ts" />
     <TypeScriptCompile Include="Logger.ts" />
     <TypeScriptCompile Include="NavBarController.ts" />
     <TypeScriptCompile Include="NavBarItem.ts" />
@@ -39,9 +40,13 @@
     <TypeScriptCompile Include="pages\EnterUntappdUsername.ts" />
     <TypeScriptCompile Include="pages\ErrorPage.ts" />
     <TypeScriptCompile Include="pages\HtmlPage.ts" />
+    <TypeScriptCompile Include="InstagramStateManager.ts" />
+    <TypeScriptCompile Include="pages\ImportImagesToInstagram.ts" />
+    <TypeScriptCompile Include="pages\LogInToInstagram.ts" />
     <TypeScriptCompile Include="pages\PullUntappdData.ts" />
     <TypeScriptCompile Include="pages\ShowUntappdData.ts" />
     <TypeScriptCompile Include="pages\VerifyInstagramLogin.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="StyleController.ts" />
     <TypeScriptCompile Include="UntappdRecord.ts" />
     <TypeScriptCompile Include="UntappdRequest.ts" />
@@ -49,6 +54,7 @@
   <ItemGroup>
     <None Include="Bihoskop.pubxml" />
     <None Include="Directory.pubxml" />
+    <Content Include="packages.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

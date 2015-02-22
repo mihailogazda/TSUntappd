@@ -41,7 +41,7 @@ class PageController {
 
     public ShowPageWithIndex(Index: number) {
         var page = this.Pages[Index];
-        this.ShowPage(page.Name);
+        this._ShowPage(page);
     }
 
     public ShowPage(Name: string) {

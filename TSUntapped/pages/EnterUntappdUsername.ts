@@ -10,8 +10,11 @@ class EnterUntappdUsername extends Page {
 
     public OnShow() {
 
-        var head = <HTMLElement> this.Container().appendChild(document.createElement("h3"));
-        head.innerHTML = " Please enter your Untappd.com UserName to begin.";
+        this.Container().appendChild(ElementFactory.CreateHeading1("Step 2: Enter Untappd.com username"));
+        this.Container().appendChild(ElementFactory.CreateBR());
+        this.Container().appendChild(ElementFactory.CreateBR());
+
+        this.Container().appendChild(ElementFactory.CreateParagraph("Please enter your Untappd username to continue."));
 
         var input = <HTMLInputElement> this.Container().appendChild(ElementFactory.CreateTextInput("Your Untappd username", StyleController.InputTextClassName));
 

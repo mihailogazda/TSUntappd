@@ -16,7 +16,7 @@ class ShowUntappdData extends Page {
 
     public OnShow() {
         var self = this;
-        this.Container().appendChild(ElementFactory.CreateHeading2("Untappd Images Viewer"));
+        this.Container().appendChild(ElementFactory.CreateHeading2("Step 3: Select images to import"));
         this.Container().appendChild(ElementFactory.CreateParagraph("(Continue button at end of this page)"));
 
         //  Buttons to select all and nothing
@@ -69,7 +69,7 @@ class ShowUntappdData extends Page {
 
         Logger.Log("Continuing with " + counter + " selected photographs.");
 
-        var nextPage = new VerifyInstagramLogin();
+        var nextPage = new ImportImagesToInstagram(this.UntappdRecords);
         this.Controller.AddPage(nextPage);
         this.Controller.ShowPageWithInstance(nextPage);
     }

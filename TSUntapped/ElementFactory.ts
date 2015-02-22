@@ -85,4 +85,12 @@ class ElementFactory {
         return <HTMLElement>span;
     }
 
+    public static CreateLoader(Text: string) {
+        var loader = ElementFactory.CreateDiv();
+        loader.appendChild(ElementFactory.CreateImage("images/loading.gif"));
+        loader.appendChild(ElementFactory.CreateBR());
+        loader.appendChild(ElementFactory.CreateParagraph(Text));
+        return loader;
+    }
+
 }; 

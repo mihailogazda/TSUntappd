@@ -2,6 +2,7 @@
 /// <reference path="ElementFactory.ts" />
 /// <reference path="PageController.ts" />
 /// <reference path="NavBarController.ts" />
+/// <reference path="InstagramStateManager.ts" />
 
 class Application {
 
@@ -12,24 +13,55 @@ class Application {
     constructor(NabBarContainer: HTMLElement, ContentContainer: HTMLElement) {
         this.NavBarContainer = NabBarContainer;
         this.ContentContainer = ContentContainer;
-
         this.PageController = new PageController(this);
     }
 
     public Start() {
 
+        //  Create base pages
         var home = new HtmlPage("Home", "pages/static/main.html");
         var about = new HtmlPage("About", "pages/static/about.html");
 
-        var step1 = new EnterUntappdUsername();
+        var untappdUsername = new EnterUntappdUsername();
+        var loginToInstagram = new LogInToInstagram();
 
+        //  Add base pages
         this.PageController.AddPage(home);
         this.PageController.AddPage(about);
-        this.PageController.AddPage(step1);
+        this.PageController.AddPage(untappdUsername);
+        this.PageController.AddPage(loginToInstagram);
 
-        this.PageController.ShowPageWithIndex(0);
+        //  Check which page to display depending on instagram data
+        var instagramManager = new InstagramStateManager();
+
+        Logger.Log("Instagram state : " + instagramManager.State);
+
+        if (instagramManager.State == InstagramStateType.INSTAGRAM_OK) {
+            //  User logged in to instagram
+            this.TestInstagramLogin();
+        } else if (instagramManager.State == InstagramStateType.INSTAGRAM_FAIL) {
+            //  user did not authenticate application
+            var error = new ErrorPage(instagramManager.ErrorMessage);
+            this.PageController.AddPage(error);
+            this.PageController.ShowPageWithInstance(error);
+        }
+        else {
+            //  Just show regular main page
+            this.PageController.ShowPageWithIndex(0);
+        }
 
         //this.TestSelector();
+        //this.TestInstagramLogin();
+    }
+
+    public ShowPage(Name: string) {
+        this.PageController.ShowPage(Name);
+    }
+
+    private TestInstagramLogin() {
+        var page = new VerifyInstagramLogin();
+        this.PageController.AddPage(page);
+        this.PageController.ShowPageWithInstance(page);
     }
 
     private TestSelector() {
@@ -44,7 +76,5 @@ class Application {
         this.PageController.ShowPageWithInstance(pp);
     }
 
-    public ShowPage(Name: string) {
-        this.PageController.ShowPage(Name);
-    }
+
 } 
