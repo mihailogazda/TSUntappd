@@ -62,4 +62,27 @@ class ElementFactory {
         return head;
     }
 
+    public static CreateSpan(Text: string = "") {
+        var span = <HTMLElement> document.createElement("span");
+        span.innerText = Text;
+        return span;
+    }
+
+    public static CreateCheckbox(Text: string, Checked: boolean, Class: string = "", Handler: Function = null) {
+        var span = this.CreateSpan("");
+        span.setAttribute("class", Class);
+
+        var checkbox = <HTMLInputElement> document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute("checked", Checked ? "true" : "false");
+        checkbox.onchange = function (event) {
+            Handler(checkbox.checked);
+        };
+        span.appendChild(checkbox);
+
+        span.appendChild(this.CreateSpan(Text));
+
+        return <HTMLElement>span;
+    }
+
 }; 
