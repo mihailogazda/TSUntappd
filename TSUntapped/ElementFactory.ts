@@ -31,6 +31,14 @@ class ElementFactory {
         return input;
     }
 
+    public static CreatePasswordInput(PlaceHolder: string, Class: string = "") {
+        var input = <HTMLElement> document.createElement("input");
+        input.setAttribute("type", "password");
+        input.setAttribute("class", Class);
+        input.setAttribute("placeholder", PlaceHolder);
+        return input;
+    }
+    
     public static CreateDiv(ClassName: string = "") {
         var div = <HTMLElement> document.createElement("div");
         div.setAttribute("class", ClassName);

@@ -76,5 +76,17 @@ class Application {
         this.PageController.ShowPageWithInstance(pp);
     }
 
+    private TestImporter() {
+        var records = new Array<UntappdRecord>();
+        for (var i = 0; i < 50; i++) {
+            var record = new UntappdRecord("" + i + 1, "unknown", "https://scontent-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10410891_10152593344278562_1888852273573356703_n.jpg?oh=83b229ae207e5e412e076c8c6a6a417a&oe=55942B5C", "https://scontent-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10410891_10152593344278562_1888852273573356703_n.jpg?oh=83b229ae207e5e412e076c8c6a6a417a&oe=55942B5C");
+            records.push(record);
+        }
+
+        var pp = new ImportImagesToInstagram(records);
+        this.PageController.AddPage(pp);
+        this.PageController.ShowPageWithInstance(pp);
+    }
+
 
 } 

@@ -9,7 +9,7 @@ class EnterUntappdUsername extends Page {
     }
 
     public OnShow() {
-
+        
         this.Container().appendChild(ElementFactory.CreateHeading1("Step 2: Enter Untappd.com username"));
         this.Container().appendChild(ElementFactory.CreateBR());
         this.Container().appendChild(ElementFactory.CreateBR());

@@ -69,6 +69,8 @@ class VerifyInstagramLogin extends Page {
             var username = data["username"];
             var picture = data["profile_picture"];
 
+            InstagramCookie.Username = username;
+
             this.Loader.innerHTML = "";
             this.Loader.appendChild(ElementFactory.CreateBR());
             this.Loader.appendChild(ElementFactory.CreateBR());
@@ -77,9 +79,24 @@ class VerifyInstagramLogin extends Page {
             this.Loader.appendChild(ElementFactory.CreateBR());
             this.Loader.appendChild(ElementFactory.CreateBR());
 
+            this.Loader.appendChild(ElementFactory.CreateParagraph("Please re-enter Instagram password"));
+            this.Loader.appendChild(ElementFactory.CreateParagraph("(it will not be saved anywhere)"));
+
+            var passField = <HTMLInputElement> this.Loader.appendChild(ElementFactory.CreatePasswordInput("Enter password", StyleController.InputTextClassName));
+
+            this.Loader.appendChild(ElementFactory.CreateBR());
+            this.Loader.appendChild(ElementFactory.CreateBR());
+
             this.Loader.appendChild(ElementFactory.CreateButton("Continue", StyleController.ButtonSuccessClassName, function () {
                 //  go to next page
-                ApplicationInstance.ShowPage("EnterUntappdUsername");
+                if (passField.value.length > 0) {
+                    //  Save pasword first
+                    InstagramCookie.Password = passField.value;
+                    //  Go to next page
+                    ApplicationInstance.ShowPage("EnterUntappdUsername");
+                } else {
+                    alert("Please enter your password to continue");
+                }
             }));
         }
     }
