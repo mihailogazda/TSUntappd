@@ -1,5 +1,15 @@
 <?php
 
+// Set the username and password of the account that you wish to post a photo to
+$username = $_POST["username"];
+$password = $_POST["password"];
+
+// Set the path to the file that you wish to post.
+// This must be jpeg format and it must be a perfect square
+$filename = $_POST["image"];
+
+// Set the caption for the photo
+$caption = $_POST["caption"];
 
 function SendRequest($url, $post, $post_data, $user_agent, $cookies) {
     $ch = curl_init();
@@ -76,18 +86,6 @@ function DownloadImageToPath($image, $out){
 	}
 	return false;
 }
-
-
-// Set the username and password of the account that you wish to post a photo to
-$username = $_GET["username"];
-$password = $_GET["password"];
-
-// Set the path to the file that you wish to post.
-// This must be jpeg format and it must be a perfect square
-$filename = $_GET["image"];
-
-// Set the caption for the photo
-$caption = $_GET["caption"];
 
 //	Set directory to store images
 $directory = __DIR__ . "/uploaded_images/";

@@ -113,12 +113,15 @@ class ImportImagesToInstagram extends Page {
         //  Form url for upload
         var url = window.location.href;
         url = url.substr(0, url.lastIndexOf("/"));
-        url += "/php/upload.php?username=" + InstagramCookie.Username + "&password=" + InstagramCookie.Password + "&image=" + Record.ImageLargeURL + "&caption=" + "UntappdImage " + Record.ImageID;
+        url += "/php/upload.php";
+        var params = "username=" + InstagramCookie.Username + "&password=" + InstagramCookie.Password + "&image=" + Record.ImageLargeURL + "&caption=" + "UntappdImage " + Record.ImageID;
 
         try {
             //  Upload image
             var req = new XMLHttpRequest();
-            req.open("get", url, true);
+            req.open("POST", url, true);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
             req.onload = function () {
 
                 if (req.responseText == "Success") {
@@ -129,7 +132,9 @@ class ImportImagesToInstagram extends Page {
                 self.DoneCounter++;
                 self.ContinueWithNextRecord();
             };
-            req.send();
+
+            req.send(params);
+
         } catch (e) {
             this.ProgressErrors.appendChild(ElementFactory.CreateParagraph("Failed to upload " + Record.ImageLargeURL));
             this.DoneCounter++;
