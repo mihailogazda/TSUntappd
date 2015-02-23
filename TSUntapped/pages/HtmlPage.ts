@@ -18,7 +18,6 @@ class HtmlPage extends Page {
         var xml = new XMLHttpRequest();
         xml.open("get", this.Path, true);
         xml.onload = function (e) {
-            //Logger.Log(xml.responseText);
             self.Container().innerHTML = xml.responseText;
         };
         xml.send();

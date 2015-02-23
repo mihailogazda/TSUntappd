@@ -34,8 +34,7 @@ class ShowUntappdData extends Page {
         //  Image container with records
         this.ImageContent = <HTMLElement> this.Container().appendChild(ElementFactory.CreateDiv("image-container"));
         this.LastParent = this.ImageContent;
-
-        var self = this;
+        
         this.UntappdRecords.forEach(function (record) {
             self.ShowSingleRecord(record);
         });

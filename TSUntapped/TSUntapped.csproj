@@ -44,12 +44,16 @@
     <TypeScriptCompile Include="pages\HtmlPage.ts" />
     <TypeScriptCompile Include="InstagramStateManager.ts" />
     <TypeScriptCompile Include="pages\ImportImagesToInstagram.ts" />
-    <TypeScriptCompile Include="pages\LogInToInstagram.ts" />
+    <TypeScriptCompile Include="pages\LogInToInstagram_v2.ts" />
     <TypeScriptCompile Include="pages\PullUntappdData.ts" />
     <TypeScriptCompile Include="pages\ShowUntappdData.ts" />
+    <TypeScriptCompile Include="pages\LogInToInstagram.ts" />
+    <TypeScriptCompile Include="pages\VerifyInstagramLogin_v2.ts" />
     <TypeScriptCompile Include="pages\VerifyInstagramLogin.ts" />
+    <Content Include="php\image.php" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="StyleController.ts" />
+    <TypeScriptCompile Include="Tests.ts" />
     <TypeScriptCompile Include="UntappdRecord.ts" />
     <TypeScriptCompile Include="UntappdRequest.ts" />
   </ItemGroup>

@@ -27,7 +27,7 @@ class UntappdRequest {
     /*
      *  Forms full request with just method name.
      *  E.g. Pass user/photos/ to get 
-     *  https://api.untappd.com/v4/user/photos/mihailogazda?client_id=90EC6DA7893C58FD2DC6289B4FEEC245A4C38A7A&client_secret=E38234FC65C90F022AE50187172BD958C3B55C1E
+     *  https://api.untappd.com/v4/user/photos/user?client_id=90EC6DA7893C58FD2DC6289B4FEEC245A4C38A7A&client_secret=E38234FC65C90F022AE50187172BD958C3B55C1E
      */
     public GetFullApiString(ApiRequest: string) {
         return this.GetAuthenticatedApiString(this.ApiBase + ApiRequest + this.Username + "?m=true");
@@ -35,8 +35,8 @@ class UntappdRequest {
 
     /*
      *  Just adds authenitication data to already formed URL API
-     *  E.g. Pass https://api.untappd.com/v4/user/photos/mihailogazda to get 
-     *  https://api.untappd.com/v4/user/photos/mihailogazda?client_id=90EC6DA7893C58FD2DC6289B4FEEC245A4C38A7A&client_secret=E38234FC65C90F022AE50187172BD958C3B55C1E
+     *  E.g. Pass https://api.untappd.com/v4/user/photos/user to get 
+     *  https://api.untappd.com/v4/user/photos/user?client_id=90EC6DA7893C58FD2DC6289B4FEEC245A4C38A7A&client_secret=E38234FC65C90F022AE50187172BD958C3B55C1E
      */
     public GetAuthenticatedApiString(ApiRequest: string) {
         ApiRequest = ApiRequest.replace("http://", "https://");

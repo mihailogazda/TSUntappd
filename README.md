@@ -1,6 +1,6 @@
 # TSUntappd
 Untappd -> Instagram App using TypeScript
 
-# Test app
+## Try out application
 
-You are welcome to test this app at http://www.bihoskop.com/untappd/
+You are welcome to test this app at http://bihoskop.com/untappd/.

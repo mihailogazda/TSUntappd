@@ -21,17 +21,21 @@ class Application {
         //  Create base pages
         var home = new HtmlPage("Home", "pages/static/main.html");
         var about = new HtmlPage("About", "pages/static/about.html");
-
-        var untappdUsername = new EnterUntappdUsername();
-        var loginToInstagram = new LogInToInstagram();
+        
+        //  Preload because its called from HTML
+        var loginToInstagram = new LogInToInstagram_v2();
 
         //  Add base pages
         this.PageController.AddPage(home);
         this.PageController.AddPage(about);
-        this.PageController.AddPage(untappdUsername);
         this.PageController.AddPage(loginToInstagram);
 
         //  Check which page to display depending on instagram data
+        /*
+                USING OFFICIAL API DISABLED SINCE IMAGE UPLOAD IS NOT 
+                    SUPPORTED. SWITCHED TO MANUAL DEVICE EMULATION
+                                WITH PHP SCRIPTS.
+
         var instagramManager = new InstagramStateManager();
 
         Logger.Log("Instagram state : " + instagramManager.State);
@@ -45,48 +49,17 @@ class Application {
             this.PageController.AddPage(error);
             this.PageController.ShowPageWithInstance(error);
         }
-        else {
+        else {*/
             //  Just show regular main page
             this.PageController.ShowPageWithIndex(0);
-        }
-
-        //this.TestSelector();
-        //this.TestInstagramLogin();
+        /*}*/
     }
 
     public ShowPage(Name: string) {
         this.PageController.ShowPage(Name);
     }
 
-    private TestInstagramLogin() {
-        var page = new VerifyInstagramLogin();
-        this.PageController.AddPage(page);
-        this.PageController.ShowPageWithInstance(page);
-    }
 
-    private TestSelector() {
-        var records = new Array<UntappdRecord>();
-        for (var i = 0; i < 50; i++) {
-            var record = new UntappdRecord("100", "unknown", "https://scontent-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10410891_10152593344278562_1888852273573356703_n.jpg?oh=83b229ae207e5e412e076c8c6a6a417a&oe=55942B5C", "https://scontent-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10410891_10152593344278562_1888852273573356703_n.jpg?oh=83b229ae207e5e412e076c8c6a6a417a&oe=55942B5C");
-            records.push(record);
-        }
-
-        var pp = new ShowUntappdData(records);
-        this.PageController.AddPage(pp);
-        this.PageController.ShowPageWithInstance(pp);
-    }
-
-    private TestImporter() {
-        var records = new Array<UntappdRecord>();
-        for (var i = 0; i < 50; i++) {
-            var record = new UntappdRecord("" + i + 1, "unknown", "https://scontent-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10410891_10152593344278562_1888852273573356703_n.jpg?oh=83b229ae207e5e412e076c8c6a6a417a&oe=55942B5C", "https://scontent-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10410891_10152593344278562_1888852273573356703_n.jpg?oh=83b229ae207e5e412e076c8c6a6a417a&oe=55942B5C");
-            records.push(record);
-        }
-
-        var pp = new ImportImagesToInstagram(records);
-        this.PageController.AddPage(pp);
-        this.PageController.ShowPageWithInstance(pp);
-    }
 
 
 } 

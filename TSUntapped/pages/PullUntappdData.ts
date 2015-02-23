@@ -30,8 +30,7 @@ class PullUntappdData extends Page {
     }
 
     public OnShow() {
-
-        this.Container().appendChild(ElementFactory.CreateHeading2("Loading data for user : " + this.UserName));
+        
         this.Loader = <HTMLElement> this.Container().appendChild(ElementFactory.CreateLoader("Downloading data..."));
         this.ProgressParagraph = <HTMLElement> this.Loader.appendChild(ElementFactory.CreateParagraph(""));
 
