@@ -7,8 +7,8 @@ class UntappdRequest {
     ApiBase: string;
 
     constructor(Username: string) {
-        this.ClientID = "90EC6DA7893C58FD2DC6289B4FEEC245A4C38A7A";
-        this.ClientSecret = "E38234FC65C90F022AE50187172BD958C3B55C1E";
+        this.ClientID = "";
+        this.ClientSecret = "";
         this.ApiBase = "https://api.untappd.com/v4/";
         this.Username = Username;
     }
