@@ -6,7 +6,7 @@ class InstagramRequest {
     BaseAPI: string;
 
     constructor() {
-        this.ClientID = "f4c8d81dde20488b8057588fe7fea21a";
+        this.ClientID = "";
         this.BaseAPI = "https://api.instagram.com/v1/";
     }
 
